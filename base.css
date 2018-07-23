@@ -11,13 +11,12 @@ body {
 }
 
 body, input, button, textarea, select {
-  font-family: Helvetica , "游ゴシック" , "Yu Gothic" , "メイリオ", sans-serif;
-  letter-spacing: .05em;
+  font-family: Verdana, Helvetica, "游ゴシック", "Yu Gothic", "メイリオ", sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  /*font-family: serif;*/
-  letter-spacing: .1em;
+  font-family: Segoe UI, sans-serif;
+  /*letter-spacing: .1em;*/
 }
 
 h1 { font-size: 1.5em; }
@@ -45,11 +44,12 @@ mark {
 }
 
 dt {
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 dd {
-  padding-left: 20px;
-  margin-top: .5em;
+  margin-left: 0;
+  padding-left: 2em;
+  /* margin-top: .5em; */
 }
 li {
   margin-left: 30px;
