@@ -59,6 +59,10 @@ em {
   font-weight: bold;
   font-style: normal;
 }
+strong {
+  font-weight: bold;
+  color: red;
+}
 
 #last_modified {
   text-align: right;
