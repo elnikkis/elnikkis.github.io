@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>豊鉄バス　豊橋技科大線　時刻検索</title>
+<script>
+const searchURL = 'https://www.toyotetsu.jp/search/';
+const gikadai = {
+    name: '%E6%8A%80%E7%A7%91%E5%A4%A7%E5%89%8D',
+    code: '124',
+};
+const kitayama = {
+    name: '%E5%8C%97%E5%B1%B1',
+    code: '125',
+};
+const ekimae = {
+    name: '%E8%B1%8A%E6%A9%8B%E9%A7%85%E5%89%8D',
+    code: '8',
+};
+
+//'https://www.toyotetsu.jp/search/?station1=%E6%8A%80%E7%A7%91%E5%A4%A7%E5%89%8D&station2=%E5%8C%97%E5%B1%B1&sdate=2020-09-29&hour=19&min=54&dtype=1&sname1=%E6%8A%80%E7%A7%91%E5%A4%A7%E5%89%8D&scode1=124&skind1=1&sname2=%E5%8C%97%E5%B1%B1&scode2=125&skind2=1&lat1=&lng1=&lat2=&lng2=&Mode=result&Stype=1'
+//https://www.toyotetsu.jp/search/?station1=%E8%B1%8A%E6%A9%8B%E9%A7%85%E5%89%8D&station2=%E6%8A%80%E7%A7%91%E5%A4%A7%E5%89%8D&sdate=2020-10-01&hour=20&min=15&dtype=1&sname1=%E8%B1%8A%E6%A9%8B%E9%A7%85%E5%89%8D&scode1=8&skind1=1&sname2=%E6%8A%80%E7%A7%91%E5%A4%A7%E5%89%8D&scode2=124&skind2=1&lat1=&lng1=&lat2=&lng2=&Mode=result&Stype=1
+
+function construct(from, to)
+{
+    const now = new Date();
+    const month = (now.getMonth() + 1).toString().padStart(2, '0');
+    const day = now.getDate().toString().padStart(2, '0');
+
+    const date = now.getFullYear() + '-' + month + '-' + day;
+    console.log(date);
+    const hour = now.getHours();
+    const min = now.getMinutes();
+
+    const url = searchURL + '?station1=' + from.name + '&station2=' + to.name
+        + '&sdate=' + date + '&hour=' + hour + '&min=' + min
+        + '&dtype=1' //出発とか到着とか
+        + '&sname1=' + from.name + '&scode1=' + from.code + '&skind1=1'
+        + '&sname2=' + to.name + '&scode2=' + to.code + '&skind2=1'
+        + '&lat1=&lng1=&lat2=&lng2=&Mode=result&Stype=1';
+    return url;
+}
+function go(from, to)
+{
+    const url = construct(from, to);
+    window.location.href = url;
+}
+</script>
+</head>
+<body>
+<h1>豊鉄バス時刻検索</h1>
+<h2>現在時刻で検索</h2>
+<ul>
+    <li>
+        <button type="button" onclick="go(ekimae, kitayama)">豊橋駅前から北山</button>
+        <button type="button" onclick="go(kitayama, ekimae)">北山から豊橋駅前</button>
+    </li>
+    <li>
+        <button type="button" onclick="go(gikadai, kitayama)">技科大前から北山</button>
+        <button type="button" onclick="go(kitayama, gikadai)">北山から技科大前</button>
+    </li>
+    <li>
+        <button type="button" onclick="go(ekimae, gikadai)">豊橋駅前から技科大前</button>
+        <button type="button" onclick="go(gikadai, ekimae)">技科大前から豊橋駅前</button>
+    </li>
+</ul>
+</body>
+</html>
